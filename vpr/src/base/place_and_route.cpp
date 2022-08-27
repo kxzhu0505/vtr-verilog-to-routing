@@ -53,6 +53,7 @@ int binary_search_place_and_route(const t_placer_opts& placer_opts_ref,
                                   const t_annealing_sched& annealing_sched,
                                   const t_router_opts& router_opts,
                                   const t_analysis_opts& analysis_opts,
+                                  const t_noc_opts& noc_opts,
                                   const t_file_name_opts& filename_opts,
                                   const t_arch* arch,
                                   bool verify_binary_search,
@@ -177,7 +178,7 @@ int binary_search_place_and_route(const t_placer_opts& placer_opts_ref,
         if (placer_opts.place_freq == PLACE_ALWAYS) {
             placer_opts.place_chan_width = current;
             try_place(placer_opts, annealing_sched, router_opts, analysis_opts,
-                      arch->Chans, det_routing_arch, segment_inf,
+                      noc_opts, arch->Chans, det_routing_arch, segment_inf,
                       arch->Directs, arch->num_directs);
         }
         success = try_route(current,
@@ -308,7 +309,7 @@ int binary_search_place_and_route(const t_placer_opts& placer_opts_ref,
                 break;
             if (placer_opts.place_freq == PLACE_ALWAYS) {
                 placer_opts.place_chan_width = current;
-                try_place(placer_opts, annealing_sched, router_opts, analysis_opts,
+                try_place(placer_opts, annealing_sched, router_opts, analysis_opts, noc_opts,
                           arch->Chans, det_routing_arch, segment_inf,
                           arch->Directs, arch->num_directs);
             }
